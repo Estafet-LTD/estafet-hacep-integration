@@ -1,0 +1,41 @@
+template header
+channel
+windowLength
+purchaseCount
+windowTime
+
+package com.hacep.rules.functions;
+
+import com.hacep.model.Purchase;
+
+import accumulate com.hacep.rules.functions.ConsecutiveDaysAccumulateFunction consecutivedays;
+
+declare Purchase
+    @role( event )
+    @timestamp( timestamp.getTime() )
+    @expires( 30d )
+end
+
+template "purchases"
+
+rule "purchase seen_@{row.rowNumber}"
+when
+    $purchase : Purchase ( )
+then
+    channels["@{channel}"].send("Purchase rec'd for customer " + $purchase.getCustomerId() + " for amt " + $purchase.getAmount());
+end
+
+rule "report multiple purchases by a customer over @{windowTime} window @{row.rowNumber}"
+when
+    $purchase : Purchase ( $customerId : customerId ) over window:length(@{windowLength})
+    $purchaseCount : Number( intValue > @{purchaseCount} )
+    				 from accumulate ($iter : Purchase ( $purchase.customerId == customerId ) over window:time( @{windowTime} ),
+    				 count( $iter ) )
+    $purchaseSum : Number( )
+                     from accumulate ( Purchase ( $purchase.customerId == customerId, $purchaseAmount : amount ) over window:time( @{windowTime} ),
+                     sum( $purchaseAmount ) )
+then
+	channels["@{channel}"].send("repeat customer " + $purchase.getCustomerId() + " has made " + $purchaseCount + " purchases over last 30 days for a sum of " + $purchaseSum);
+end
+
+end template
