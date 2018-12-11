@@ -1,6 +1,6 @@
 
 There are two folders hacep-integration which is the maven project and ansible-terraform where all the needed scripts for setting up an HA environment are placed. 
-The maven project consists of 3 child projects hacep-integration-app, hacep-integration-module, hacep-integration-rules and event-publisher (This project was constructed following the instructions for hacep integration in the HACEP architecture document).
+The maven project consists of four child projects hacep-integration-app, hacep-integration-module, hacep-integration-rules and event-publisher (This project was constructed following the instructions for hacep integration in the HACEP architecture document).
 hacep-integraion can be imported in eclipse as an existing maven project.
 
 To build the project first thing to do is to clone the hacep source code from 
