@@ -28,6 +28,7 @@ resource "aws_instance" "master" {
 
   vpc_security_group_ids = [
     "${aws_security_group.hacep-vpc.id}",
+    "${aws_security_group.hacep-ssh.id}",
     "${aws_security_group.hacep-public-ingress.id}",
     "${aws_security_group.hacep-public-egress.id}",
   ]
@@ -83,6 +84,7 @@ resource "aws_instance" "node1" {
 
   vpc_security_group_ids = [
     "${aws_security_group.hacep-vpc.id}",
+    "${aws_security_group.hacep-ssh.id}",
     "${aws_security_group.hacep-public-ingress.id}",
     "${aws_security_group.hacep-public-egress.id}",
   ]
@@ -112,6 +114,7 @@ resource "aws_instance" "node2" {
 
   vpc_security_group_ids = [
     "${aws_security_group.hacep-vpc.id}",
+    "${aws_security_group.hacep-ssh.id}",
     "${aws_security_group.hacep-public-ingress.id}",
     "${aws_security_group.hacep-public-egress.id}",
   ]
@@ -141,6 +144,7 @@ resource "aws_instance" "node3" {
 
   vpc_security_group_ids = [
     "${aws_security_group.hacep-vpc.id}",
+    "${aws_security_group.hacep-ssh.id}",
     "${aws_security_group.hacep-public-ingress.id}",
     "${aws_security_group.hacep-public-egress.id}",
   ]

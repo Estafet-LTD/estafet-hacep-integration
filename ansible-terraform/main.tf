@@ -17,3 +17,17 @@ module "hacep" {
   cluster_id      = "hacep-cluster-${var.region}"
 }
 
+output "master-public_ip" {
+  value = "${module.hacep.master-public_ip}"
+}
+output "node1-public_ip" {
+  value = "${module.hacep.node1-public_ip}"
+}
+
+output "node2-public_ip" {
+  value = "${module.hacep.node2-public_ip}"
+}
+
+output "node3-public_ip" {
+  value = "${module.hacep.node3-public_ip}"
+}
