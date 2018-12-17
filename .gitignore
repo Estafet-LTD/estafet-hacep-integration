@@ -11,6 +11,11 @@ target/
 *.ear
 *.db
 
+# Terraform Files
+ansible-terraform/terraform.tfstate
+ansible-terraform/terraform.tfstate.backup
+ansible-terraform/.terraform/
+
 ######################
 # Eclipse
 ######################
